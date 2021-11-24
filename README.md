@@ -43,3 +43,5 @@ Potential is $V(x, y) = \frac{(x^2 + y^2 )}{2}$ and $\psi(x, y,0) = \frac{1}{\sq
 
 Galati, Luigi, "Numerical Solutions to the Gross-Pitaevskii Equation for Bose-Einstein 
 Condensates" (2013). Electronic Theses and Dissertations. 844. 
+
+
