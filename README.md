@@ -27,19 +27,19 @@ stable. In fact,under any mesh size $\Delta \bold{x}$ and time step $\Delta t$.
 
 ### Animation in 1-D
 The animation of the wave function is shown below.
-![](spectral-1D.gif)
+![](gifs/spectral-1D.gif)
 Simulation of $\psi(x, t)$ in 1-D. At $\Delta x = \frac{2\pi}{500}$, $\Delta t = 0.01$ and $ -\pi \le x \le \pi$.
 
 Potential is $V(x) = \frac{x^2}{2}$ and $\psi(x,0) = \frac{1}{(\pi)^\frac{1}{4}}\exp(\frac{-x^2}{2})$
 
 ### Animation in 2-D
-![](spectral-2D.gif)
+![](gifs/spectral-2D.gif)
 Simulation of $\psi(x,y, t)$ in 2-D. At $\Delta x = \Delta y =\frac{2\pi}{256}$, $\Delta t = 0.01$ and $ -\pi \le x \le \pi$, $ -\pi \le y \le \pi$.
 
 Potential is $V(x, y) = \frac{(x^2 + y^2 )}{2}$ and $\psi(x, y,0) = \frac{1}{\sqrt{\pi}}\exp(\frac{-(x^2 + y^2)}{2})$.
 
 ## Comparision B/W Leapfrog method and TSSP ##
-![](diff.png)
+![](figs/diff.png)
 
 
 ## Refrences: ##

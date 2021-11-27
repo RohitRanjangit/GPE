@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib import animation, cm
 
 psi0 = sp2.psi
-steps = 9385
-dt = 0.001
+steps = 1000
+dt = 0.01
 
 psi_pp = psi0
 psi_p = psi0
@@ -57,7 +57,8 @@ if __name__ == '__main__':
     ax3 = fig.add_subplot(224)
     ani = animation.FuncAnimation(fig, update, interval=10, frames=steps, repeat=False)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    ani.save('leapfrog-2D.gif', fps=30,writer='ffmpeg')
+    ani.save('leapfrog-2D.mp4', writer='ffmpeg', fps=30)
+    #ani.save('leapfrog-2D.gif', fps=30,writer='ffmpeg')
     #plt.show()
     
 def leapfrog2D():

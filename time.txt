@@ -1,0 +1,15 @@
+time python3 leapfrog1D.py 
+real    4m16.810s
+user    4m22.187s
+sys     0m8.725s
+
+time python3 leapfrog2D.py 
+real    19m45.575s
+user    48m45.180s
+sys     23m41.725s
+
+time python3 spectral1D.py 
+real    3m21.334s
+user    3m26.126s
+sys     0m7.157s
+

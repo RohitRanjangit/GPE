@@ -4,11 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 psi0 = sp1.psi0
-steps = 9385
-dt = 0.001
+steps = 1000
+dt = 0.01
 
 psi_pp = psi0
 psi_p = psi0
+
+#psi_p = 
 
 L = sp1.L
 GRID = sp1.GRID
@@ -45,11 +47,11 @@ def update(frame):
 if __name__ == '__main__':
     fig, (ax, ax2) = plt.subplots(nrows=1, ncols =2, figsize=(12,5))
     fig.suptitle('Time evolution of the wavefunction-1D using Leapfrog scheme',fontsize=16)
-    ani  = animation.FuncAnimation(fig, update, frames=steps, interval=1)
+    ani  = animation.FuncAnimation(fig, update, frames=steps, interval=10)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    #ani.save('leapfrog-1D.mp4', writer='ffmpeg', fps=30)
+    ani.save('leapfrog-1D.mp4', writer='ffmpeg', fps=30)
     #save ani as gif
-    ani.save('leapfrog-1D.gif', writer='ffmpeg', fps=30)
+    #ani.save('leapfrog-1D.gif', writer='ffmpeg', fps=30)
     #plt.show()
 
 def leapfrog1D():
