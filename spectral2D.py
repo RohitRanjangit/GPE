@@ -10,7 +10,9 @@ DX = L/N
 GRID = np.meshgrid(np.arange(-L/2,L/2,DX), np.arange(-L/2,L/2,DX))
 GRID_X, GRID_Y = GRID
 DT = 0.01
-mu = np.meshgrid(np.fft.fftfreq(N, d=DX),np.fft.fftfreq(N, d=DX))
+alpha = 1
+kappa = 1
+mu = np.meshgrid(2*np.pi*np.fft.fftfreq(N, d=DX),2*np.pi*np.fft.fftfreq(N, d=DX))
 mu_sq = mu[0]**2 + mu[1]**2
 
 
@@ -59,15 +61,6 @@ def shi_cube(shi):
 psi = shi_init(GRID)
 steps = 1000
 
-fig = plt.figure(figsize=(14,8))
-
-fig.suptitle('Time evolution of the wavefunction-2D',fontsize=16)
-
-ax = fig.add_subplot(221, projection='3d')
-ax1 = fig.add_subplot(222, projection='3d')
-ax2 = fig.add_subplot(223, projection='3d')
-ax3 = fig.add_subplot(224)
-
 def update(frame):
     global psi
     
@@ -75,9 +68,9 @@ def update(frame):
     #print(np.sum(np.abs(psi)**2)*DX**2)
     
     psi  = np.fft.fft2(psi*np.exp(-0.5j*DT*potential(GRID)))
-    psi = np.exp(-0.5j*DT*mu_sq)*psi
+    psi = np.exp(-0.5j*DT*alpha*mu_sq)*psi
     psi = np.fft.ifft2(psi)
-    psi = psi*np.exp(-0.5j*DT*(np.absolute(psi)**2 + potential(GRID)))
+    psi = psi*np.exp(-0.5j*DT*(kappa*np.absolute(psi)**2 + potential(GRID)))
     ax.clear(), ax1.clear(), ax2.clear(), ax3.clear()
     
     ax.set_title('Time evolution real part of the wavefunction at t={}'.format(np.round(frame*DT, 2)))
@@ -104,10 +97,31 @@ def update(frame):
     ax2.plot_surface(GRID_X, GRID_Y, np.absolute(psi), cmap=cm.jet, linewidth=0, antialiased=False)
     ax3.imshow(np.absolute(psi), cmap=cm.jet)
 
-ani = animation.FuncAnimation(fig, update, interval=10, frames=steps, repeat=False)
-plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-#ani.save('animation-2D.gif', fps=30,writer='ffmpeg')
-plt.show()
+if __name__ == '__main__':
+    fig = plt.figure(figsize=(14,8))
+
+    fig.suptitle('Time evolution of the wavefunction-2D using TSSP',fontsize=16)
+
+    ax = fig.add_subplot(221, projection='3d')
+    ax1 = fig.add_subplot(222, projection='3d')
+    ax2 = fig.add_subplot(223, projection='3d')
+    ax3 = fig.add_subplot(224)
+    ani = animation.FuncAnimation(fig, update, interval=10, frames=steps, repeat=False)
+    plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
+    ani.save('spectral-2D.gif', fps=30,writer='ffmpeg')
+    #plt.show()
+    
+    
+def spectral2D():
+    global psi
+    
+    #2-D integration of psi
+    #print(np.sum(np.abs(psi)**2)*DX**2)
+    
+    psi  = np.fft.fft2(psi*np.exp(-0.5j*DT*potential(GRID)))
+    psi = np.exp(-0.5j*DT*alpha*mu_sq)*psi
+    psi = np.fft.ifft2(psi)
+    psi = psi*np.exp(-0.5j*DT*(kappa*np.absolute(psi)**2 + potential(GRID)))
 
 
 

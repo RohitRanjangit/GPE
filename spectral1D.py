@@ -9,6 +9,8 @@ N = 500 #Number of Grid points
 DX = L/N #Grid spacing
 GRID = np.arange(-L/2,L/2,DX, dtype=complex) #Grid points
 DT = 0.01 #Time step
+alpha = 1
+kappa = 1
 mu_sq  = (2*np.pi*np.fft.fftfreq(N, d=DX))**2 #Fourier frequencies
 
 def shi_init(x):
@@ -60,19 +62,15 @@ def v_shi(x, shi):
 psi = shi_init(GRID)
 steps = 500
 
-fig, (ax, ax2) = plt.subplots(nrows=1, ncols =2, figsize=(12,5))
-
-fig.suptitle('Time evolution of the wavefunction',fontsize=16)
-
 psi0 = psi
 
 def update(frame):
     global psi
     #print(np.sum(np.abs(psi)**2)*DX)
     psi  = np.fft.fft(psi*np.exp(-0.5j*DT*potential(GRID)))
-    psi = np.exp(-0.5j*DT*mu_sq)*psi
+    psi = np.exp(-0.5j*DT*alpha*mu_sq)*psi
     psi = np.fft.ifft(psi)
-    psi = psi*np.exp(-0.5j*DT*(np.absolute(psi)**2 + potential(GRID)))
+    psi = psi*np.exp(-0.5j*DT*(kappa*np.absolute(psi)**2 + potential(GRID)))
     ax.clear()
     ax2.clear()
     ax.set_xlabel('x')
@@ -93,14 +91,25 @@ def update(frame):
     ax2.imshow(np.abs(psi)[np.newaxis, :], cmap='plasma', interpolation='nearest', extent=[-L/2, L/2, 0, 1])
 
 
-ani = animation.FuncAnimation(fig, update, frames=steps,  interval=50, repeat=False)
-plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-#ani.save('animation-1D.mp4', writer='ffmpeg', fps=30)
-#save ani as gif
-ani.save('animation-1D.gif', writer='ffmpeg', fps=30)
-#plt.show()
+if __name__ == '__main__':
+    fig, (ax, ax2) = plt.subplots(nrows=1, ncols =2, figsize=(12,5))
+    fig.suptitle('Time evolution of the wavefunction-1D using TSSP',fontsize=16)
+    ani = animation.FuncAnimation(fig, update, frames=steps,  interval=50, repeat=False)
+    plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
+    #ani.save('animation-1D.mp4', writer='ffmpeg', fps=30)
+    #save ani as gif
+    ani.save('spectral-1D.gif', writer='ffmpeg', fps=30)
+    #plt.show()
+    
 
-#save animagion using ffmpeg
+def spectral1D():
+    global psi
+    #print(np.sum(np.abs(psi)**2)*DX)
+    psi  = np.fft.fft(psi*np.exp(-0.5j*DT*potential(GRID)))
+    psi = np.exp(-0.5j*DT*alpha*mu_sq)*psi
+    psi = np.fft.ifft(psi)
+    psi = psi*np.exp(-0.5j*DT*(kappa*np.absolute(psi)**2 + potential(GRID)))
+    
 
 
 

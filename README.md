@@ -11,7 +11,7 @@ positive (focussing) or negative (defocussing).
 ## The Gross-Pitaevskii equation
 **Time dependent Equation is:**
 $
--i\hbar\frac{\partial\psi(\bold{x}, t)}{\partial t} = -\frac{\hbar}{2m}\nabla^2\psi(\bold{x}) + \bold{V}(\bold{x}) \psi(\bold{x})  + NU_0 |\psi(\bold{x})|^2\psi(\bold{x})
+i\hbar\frac{\partial\psi(\bold{x}, t)}{\partial t} = -\frac{\hbar}{2m}\nabla^2\psi(\bold{x}) + \bold{V}(\bold{x}) \psi(\bold{x})  + NU_0 |\psi(\bold{x})|^2\psi(\bold{x})
 $
 
 where:
@@ -27,16 +27,19 @@ stable. In fact,under any mesh size $\Delta \bold{x}$ and time step $\Delta t$.
 
 ### Animation in 1-D
 The animation of the wave function is shown below.
-![](animation-1D.gif)
+![](spectral-1D.gif)
 Simulation of $\psi(x, t)$ in 1-D. At $\Delta x = \frac{2\pi}{500}$, $\Delta t = 0.01$ and $ -\pi \le x \le \pi$.
 
 Potential is $V(x) = \frac{x^2}{2}$ and $\psi(x,0) = \frac{1}{(\pi)^\frac{1}{4}}\exp(\frac{-x^2}{2})$
 
 ### Animation in 2-D
-![](animation-2D.gif)
+![](spectral-2D.gif)
 Simulation of $\psi(x,y, t)$ in 2-D. At $\Delta x = \Delta y =\frac{2\pi}{256}$, $\Delta t = 0.01$ and $ -\pi \le x \le \pi$, $ -\pi \le y \le \pi$.
 
 Potential is $V(x, y) = \frac{(x^2 + y^2 )}{2}$ and $\psi(x, y,0) = \frac{1}{\sqrt{\pi}}\exp(\frac{-(x^2 + y^2)}{2})$.
+
+## Comparision B/W Leapfrog method and TSSP ##
+![](diff.png)
 
 
 ## Refrences: ##
