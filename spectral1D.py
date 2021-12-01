@@ -1,3 +1,11 @@
+"""
+The License of this code is reserved to the author of the code,
+Author: Rohit Ranjan
+This code is not for commercial use. and it is taken from the github repository
+of any other author.
+All Right Reserved @Rohit Ranjan.
+"""
+
 
 import matplotlib.pyplot as plt
 from matplotlib import animation
