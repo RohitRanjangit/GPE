@@ -34,7 +34,7 @@ def potential(x):
     Returns:
         complex: Potential
     """
-    return np.conjugate(x)*x/2
+    return -np.conjugate(x)*x/2
 
 
 def shi_cube(shi):
@@ -96,10 +96,10 @@ if __name__ == '__main__':
     fig.suptitle('Time evolution of the wavefunction-1D using TSSP',fontsize=16)
     ani = animation.FuncAnimation(fig, update, frames=steps,  interval=50, repeat=False)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    ani.save('spectral-1D.mp4', writer='ffmpeg', fps=30)
+    ani.save('spectral-1D-neg.mp4', writer='ffmpeg', fps=30)
     #save ani as gif
     #ani.save('spectral-1D.gif', writer='ffmpeg', fps=30)
-    #plt.show()
+    plt.show()
     
 
 def spectral1D():

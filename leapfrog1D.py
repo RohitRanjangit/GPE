@@ -49,10 +49,10 @@ if __name__ == '__main__':
     fig.suptitle('Time evolution of the wavefunction-1D using Leapfrog scheme',fontsize=16)
     ani  = animation.FuncAnimation(fig, update, frames=steps, interval=10)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    ani.save('leapfrog-1D.mp4', writer='ffmpeg', fps=30)
+    #ani.save('leapfrog-1D.mp4', writer='ffmpeg', fps=30)
     #save ani as gif
     #ani.save('leapfrog-1D.gif', writer='ffmpeg', fps=30)
-    #plt.show()
+    plt.show()
 
 def leapfrog1D():
     global psi_pp, psi_p

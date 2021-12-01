@@ -34,7 +34,7 @@ def potential(x):
     Returns:
         returns the potential 
     """
-    return (np.conjugate(x[0])*x[0] + np.conjugate(x[1])*x[1])/ 2
+    return -(np.conjugate(x[0])*x[0] + np.conjugate(x[1])*x[1])/ 2
 
 
 def v_shi(x, shi):
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     ax3 = fig.add_subplot(224)
     ani = animation.FuncAnimation(fig, update, interval=10, frames=steps, repeat=False)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    ani.save('spectral-2D.mp4', writer='ffmpeg', fps=30)
+    ani.save('spectral-2D-neg.mp4', writer='ffmpeg', fps=30)
     #ani.save('spectral-2D.gif', fps=30,writer='ffmpeg')
     #plt.show()
     

@@ -57,9 +57,9 @@ if __name__ == '__main__':
     ax3 = fig.add_subplot(224)
     ani = animation.FuncAnimation(fig, update, interval=10, frames=steps, repeat=False)
     plt.rcParams['animation.ffmpeg_path'] = '/usr/bin/ffmpeg'
-    ani.save('leapfrog-2D.mp4', writer='ffmpeg', fps=30)
+    #ani.save('leapfrog-2D.mp4', writer='ffmpeg', fps=30)
     #ani.save('leapfrog-2D.gif', fps=30,writer='ffmpeg')
-    #plt.show()
+    plt.show()
     
 def leapfrog2D():
     global psi_pp, psi_p
